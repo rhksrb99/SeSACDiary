@@ -10,18 +10,11 @@ import SnapKit
 import RealmSwift // 순서 1. import
 import SwiftUI
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     // 순서 2. 경로설정
     let localRealm = try! Realm()
     
-    var tasks: Results<UserDiary>!{
-        didSet{
-            // 화면 갱신은 화면 전환 코드 및 생명주기 실행 점검 필요!
-            tableView.reloadData()
-            print("갱신완료")
-        }
-    }
     
     // 지연저장 프로퍼티
     lazy var tableView: UITableView = {
@@ -33,6 +26,14 @@ class HomeViewController: UIViewController {
         return view
     }() // 즉시 실행 클로저
     
+    var tasks: Results<UserDiary>!{
+        didSet{
+            // 화면 갱신은 화면 전환 코드 및 생명주기 실행 점검 필요!
+            tableView.reloadData()
+            print("갱신완료")
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,16 +43,11 @@ class HomeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
-        let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortButtonClicked))
-        let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterButtonClicked))
-        navigationItem.leftBarButtonItems = [sortButton, filterButton]
     }
     
     // present, overCurrentContext, overFullSreen의 스타일로 지정하면 viewWillAppear이 실행되지 않는다.
@@ -61,8 +57,16 @@ class HomeViewController: UIViewController {
         print(#function)
         fetchRealm()
         
-        
     }
+    
+    override func configure() {
+    
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
+        let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortButtonClicked))
+        let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterButtonClicked))
+        navigationItem.leftBarButtonItems = [sortButton, filterButton]
+    }
+    
     
     func fetchRealm() {
         // 순서 3. Realm 데이터를 정렬해 tasks에 담기
@@ -89,9 +93,10 @@ class HomeViewController: UIViewController {
     
     @objc func plusButtonClicked() {
         let vc = WriteViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        transition(vc, transitionStyle: .presentNavigation)
     }
+    
+    
     
 }
 
@@ -102,8 +107,14 @@ extension HomeViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = tasks[indexPath.row].diaryTitle
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HomeTableViewCell else { return UITableViewCell() }
+        cell.titleLabel.text = tasks[indexPath.row].diaryTitle
+        cell.contentLabel.text = tasks[indexPath.row].diaryContents
+        cell.dateLabel.text = "\(tasks[indexPath.row].regDate)"
+        cell.diaryImageView.image = UIImage(systemName: "person")
+//        cell.diatyImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].objectId).jpg")
+        cell.setData(data: tasks[indexPath.row])
+        
         return cell
     }
     
@@ -112,8 +123,6 @@ extension HomeViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-            
-            
             
             try! self.localRealm.write {
                 // 하나의 레코드에서 특정 컬럼 하나만 변경

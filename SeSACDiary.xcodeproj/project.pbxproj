@@ -33,6 +33,11 @@
 		92CA195128B55A7500314DEB /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA195028B55A7500314DEB /* BaseCollectionViewCell.swift */; };
 		92CA195328B55A9500314DEB /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA195228B55A9500314DEB /* ReusableProtocol.swift */; };
 		92CA195628B55AC100314DEB /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA195528B55AC100314DEB /* Transition+Extension.swift */; };
+		92CA195828B5616E00314DEB /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA195728B5616E00314DEB /* HomeTableViewCell.swift */; };
+		92CA195A28B561D200314DEB /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA195928B561D200314DEB /* BaseTableViewCell.swift */; };
+		92CA195D28B5CC3700314DEB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 92CA195C28B5CC3700314DEB /* Alamofire */; };
+		92CA196028B5CC6500314DEB /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 92CA195F28B5CC6500314DEB /* SwiftyJSON */; };
+		92CA196228B5D2A400314DEB /* FIleManager+Extensioni.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA196128B5D2A400314DEB /* FIleManager+Extensioni.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +65,9 @@
 		92CA195028B55A7500314DEB /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		92CA195228B55A9500314DEB /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		92CA195528B55AC100314DEB /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
+		92CA195728B5616E00314DEB /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		92CA195928B561D200314DEB /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		92CA196128B5D2A400314DEB /* FIleManager+Extensioni.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIleManager+Extensioni.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92CA196028B5CC6500314DEB /* SwiftyJSON in Frameworks */,
+				92CA195D28B5CC3700314DEB /* Alamofire in Frameworks */,
 				92CA194028B5590000314DEB /* Kingfisher in Frameworks */,
 				92CA193D28B558EC00314DEB /* SnapKit in Frameworks */,
 				92CA192B28B557F400314DEB /* RealmSwift in Frameworks */,
@@ -133,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				92CA192F28B5586200314DEB /* HomeViewController.swift */,
+				92CA195728B5616E00314DEB /* HomeTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -165,6 +176,7 @@
 				92CA194C28B55A3C00314DEB /* BaseViewController.swift */,
 				92CA195028B55A7500314DEB /* BaseCollectionViewCell.swift */,
 				92CA195228B55A9500314DEB /* ReusableProtocol.swift */,
+				92CA195928B561D200314DEB /* BaseTableViewCell.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -191,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				92CA195528B55AC100314DEB /* Transition+Extension.swift */,
+				92CA196128B5D2A400314DEB /* FIleManager+Extensioni.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -216,6 +229,8 @@
 				92CA192A28B557F400314DEB /* RealmSwift */,
 				92CA193C28B558EC00314DEB /* SnapKit */,
 				92CA193F28B5590000314DEB /* Kingfisher */,
+				92CA195C28B5CC3700314DEB /* Alamofire */,
+				92CA195F28B5CC6500314DEB /* SwiftyJSON */,
 			);
 			productName = SeSACDiary;
 			productReference = 92CA190C28B5575900314DEB /* SeSACDiary.app */;
@@ -249,6 +264,8 @@
 				92CA192728B557F400314DEB /* XCRemoteSwiftPackageReference "realm-swift" */,
 				92CA193B28B558EC00314DEB /* XCRemoteSwiftPackageReference "SnapKit" */,
 				92CA193E28B5590000314DEB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				92CA195B28B5CC3600314DEB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				92CA195E28B5CC6500314DEB /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 92CA190D28B5575900314DEB /* Products */;
 			projectDirPath = "";
@@ -280,9 +297,12 @@
 				92CA193628B5589000314DEB /* ImageSearchViewCell.swift in Sources */,
 				92CA194528B559CA00314DEB /* Constants.swift in Sources */,
 				92CA193028B5586200314DEB /* HomeViewController.swift in Sources */,
+				92CA196228B5D2A400314DEB /* FIleManager+Extensioni.swift in Sources */,
 				92CA193828B5589B00314DEB /* WriteView.swift in Sources */,
+				92CA195A28B561D200314DEB /* BaseTableViewCell.swift in Sources */,
 				92CA191428B5575900314DEB /* ViewController.swift in Sources */,
 				92CA194D28B55A3C00314DEB /* BaseViewController.swift in Sources */,
+				92CA195828B5616E00314DEB /* HomeTableViewCell.swift in Sources */,
 				92CA195628B55AC100314DEB /* Transition+Extension.swift in Sources */,
 				92CA194728B559E500314DEB /* Color.swift in Sources */,
 				92CA195128B55A7500314DEB /* BaseCollectionViewCell.swift in Sources */,
@@ -539,6 +559,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		92CA195B28B5CC3600314DEB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		92CA195E28B5CC6500314DEB /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -561,6 +597,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92CA193E28B5590000314DEB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		92CA195C28B5CC3700314DEB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92CA195B28B5CC3600314DEB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		92CA195F28B5CC6500314DEB /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92CA195E28B5CC6500314DEB /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
